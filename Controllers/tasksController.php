@@ -22,7 +22,9 @@ class tasksController extends Controller
 
             if ($task->create($_POST["title"], $_POST["description"]))
             {
-                header("Location: " . WEBROOT . "tasks/index");
+                echo ROOT;
+                echo "Location: " . WEBROOT . "tasks/index";
+                //header("Location: " . WEBROOT . "tasks/index");
             }
         }
 

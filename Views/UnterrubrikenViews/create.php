@@ -1,13 +1,8 @@
-<h1>Create Rubrik</h1>
+<h1>Create Unterrubrik</h1>
 <form method='post' action='#'>
     <div class="form-group">
-        <label for="hauptrubrik">hauptrubrik</label>
-        <input type="text" class="form-control" id="hauptrubrik" placeholder="Geben Sie die hauptrubrik ein" name="hauptrubrik">
-    </div>
-
-    <div class="form-group">
         <label for="Unterrubrik">Unterrubrik</label>
-        <input type="text" class="form-control" id="Unterrubrik" placeholder="Geben Sie die Unterrubrik ein" name="Unterrubtik">
+        <input type="text" class="form-control" id="Unterrubrik" placeholder="Geben Sie die Unterrubrik ein" name="Unterrubrik">
     </div>
 
     <div class="form-group">

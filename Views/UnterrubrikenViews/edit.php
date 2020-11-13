@@ -1,17 +1,39 @@
 <h1>Edit Unterrubrik</h1>
 <br><br>
 <form method='post' action='#'>
-     <select name="unterrubrik"> 
-     <?php
-    for ($i=0; $i < count($unterrubrikenID); $i++) {
+<select name="unterrubriken" onchange="showUnterrubrik(this.value)">
+<?php
+  for ($i=0; $i < count($Unterrubrik); $i++) {
     $selected = "";
-    if ($unterrubrikenID == $unterrubrikenID[$i]) {
+    if ($unterrubriken == $Unterrubrik[$i]) {
       $selected = " selected";
     }
-    echo "<option$selected>$unterrubrikenID[$i]</option>";
+    echo "<option$selected>$Unterrubrik[$i]</option>";
   }
   ?>
 </select><br><br><br>
+</form>
+<br>
+<div id="txtHint"></div>
+
+<script>
+function showUnterrubrik(str) {
+  var xhttp;  
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("txtHint").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/webroot/unterrubriken/edit"+str, true);
+  xhttp.send();
+}
+</script>
+
 
     <div class="form-group">
         <label for="Unterrubrik">Neue Unterrubrik</label>

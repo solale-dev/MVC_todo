@@ -1,7 +1,7 @@
 <?php
-class Bank extends Model
+class BankModel extends Model
 {
-    public function create($title, $description)
+    public function create($Bankleitzahl, $Bezeichnung, $PLZ, $Ort, $Kurzbezeichnung, $BIC)
     {
         $sql = "INSERT INTO banken (Bankleitzahl, Bezeichnung, PLZ, Ort, Kurzbezeichnung, BIC) VALUES (:Bankleitzahl, :Bezeichnung, :PLZ, :Ort, :Kurzbezeichnung, :BIC)";
 
@@ -26,15 +26,19 @@ class Bank extends Model
         return $req->fetch();
     }
 
-    public function showAllBanken()
+    public function showAllBanken($bezeichnung = "")
     {
-        $sql = "SELECT * FROM banken";
+        //zum Bezeichnungfilter
+        if ($bezeichnung == "")
+          $sql = "SELECT * FROM banken Limit 50;";
+        else
+          $sql = "SELECT * FROM banken WHERE Bezeichnung Like '$bezeichnung%' Limit 50;";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
         return $req->fetchAll();
     }
 
-    public function edit($Bankleitzahl, $Bezeichnung, $PLZ, $Ort, $Kurzbezeichnung, $BIC)
+    public function edit($Bankleitzahl, $Bezeichnung, $PLZ, $Ort, $Kurzbezeichnung, $BIC, $bankenID)
     {
         $sql = "UPDATE banken SET Bankleitzahl = :Bankleitzahl, Bezeichnung = :Bezeichnung , PLZ = :PLZ , Ort = :Ort , Kurzbezeichnung = :Kurzbezeichnung , BIC = :BIC WHERE bankenID = :bankenID";
 
@@ -46,7 +50,8 @@ class Bank extends Model
             'PLZ' => $PLZ,
             'Ort' => $Ort,
             'Kurzbezeichnung' => $Kurzbezeichnung,
-            'BIC' => $BIC
+            'BIC' => $BIC,
+            'bankenID' => $bankenID
 
         ]);
     }

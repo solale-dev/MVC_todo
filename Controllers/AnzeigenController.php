@@ -3,27 +3,26 @@ class AnzeigenController extends Controller
 {
     function index()
     {
-        require(ROOT . 'Models/Anzeige.php');
+        require(ROOT . 'Models/AnzeigeModel.php');
 
-        $Anzeigen = new Anzeige();
+        $Anzeigen = new AnzeigeModel();
 
-        $d['Anzeigen'] = $Anzeigen->showAllAnzeigen();
+        $d['anzeigen'] = $Anzeigen->showAllAnzeigen();
         $this->set($d);
         $this->render("index");
     }
 
     function create()
     {
-        if (isset($_POST["title"]))
+        if (isset($_POST["BieteSuche"]) && isset($_POST["unterrubrikenID"]) && isset($_POST["Anzeigetext"]) && isset($_POST["KundenID"]) && isset($_POST["Telefon"]))
         {
-            require(ROOT . 'Models/Anzeige.php');
+            require(ROOT . 'Models/AnzeigeModel.php');
 
-            $Anzeige= new Anzeige();
+            $Anzeige= new AnzeigeModel();
 
-            if ($Anzeige->create($_POST["title"], $_POST["description"]))
+            if ($Anzeige->create($_POST["BieteSuche"], $_POST["unterrubrikenID"], $_POST["Anzeigetext"], $_POST["veröffentlichungsdatum"], $_POST["KundenID"], $_POST["Telefon"], $_POST["Preis"]))
             {
-                echo ROOT;
-                echo "Location: " . WEBROOT . "Anzeigen/index";
+                echo "Location: /webroot/anzeigen/index";
                 //header("Location: " . WEBROOT . "tasks/index");
             }
         }
@@ -31,32 +30,33 @@ class AnzeigenController extends Controller
         $this->render("create");
     }
 
-    function edit($id)
+    function edit($anzeigenID)
     {
-        require(ROOT . 'Models/Anzeige.php');
-        $Anzeige= new Anzeige();
+        require(ROOT . 'Models/AnzeigeModel.php');
+        $Anzeige= new AnzeigeModel();
 
-        $d["Anzeige"] = $Anzeige->showAnzeige($id);
-
-        if (isset($_POST["title"]))
+        $d["anzeigen"] = $Anzeige->showAnzeige($anzeigenID);
+        if (isset($_POST["BieteSuche"]) && isset($_POST["unterrubrikenID"]) && isset($_POST["Anzeigetext"]) && isset($_POST["KundenID"]) && isset($_POST["Telefon"]))
         {
-            if ($Anzeige->edit($id, $_POST["title"], $_POST["description"]))
+            if ($Anzeige->edit($anzeigenID, $_POST["BieteSuche"], $_POST["unterrubrikenID"], $_POST["Anzeigetext"], $_POST["veröffentlichungsdatum"], $_POST["KundenID"], $_POST["Telefon"], $_POST["Preis"]))
             {
-                header("Location: " . WEBROOT . "Anzeigen/index");
+                header("Location: /webroot/anzeigen/index");
             }
+
         }
+
         $this->set($d);
         $this->render("edit");
     }
 
-    function delete($id)
+    function delete($anzeigenID)
     {
-        require(ROOT . 'Models/Anzeige.php');
+        require(ROOT . 'Models/AnzeigeModel.php');
 
-        $Anzeige = new Anzeige();
-        if ($Anzeige->delete($id))
+        $Anzeige = new AnzeigeModel();
+        if ($Anzeige->delete($anzeigenID))
         {
-            header("Location: " . WEBROOT . "Anzeigen/index");
+            header("Location: /webroot/anzeigen/index");
         }
     }
 }

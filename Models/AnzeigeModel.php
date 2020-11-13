@@ -1,7 +1,7 @@
 <?php
-class Anzeige extends Model
+class AnzeigeModel extends Model
 {
-    public function create($title, $description)
+    public function create($BieteSuche, $unterrubrikenID, $Anzeigetext, $veröffentlichungsdatum, $KundenID, $Telefon, $Preis)
     {
         $sql = "INSERT INTO anzeigen (BieteSuche, unterrubriken, Anzeigetext, veröffentlichungsdatum, Aufnahmedatum, KundenID, Telefon, Preis) VALUES (:BieteSuche, :unterrubrikenID, :Anzeigetext, :veröffentlichungsdatum, :Aufnahmedatum, :KundenID, :Telefon, :Preis)";
 
@@ -35,29 +35,33 @@ class Anzeige extends Model
         return $req->fetchAll();
     }
 
-    public function edit($BieteSuche, $unterrubrikenID, $Anzeigetext, $veröffentlichungsdatum, $KundenID, $Telefon, $Preis)
+    public function edit($anzeigenID, $BieteSuche, $unterrubrikenID, $Anzeigetext, $veröffentlichungsdatum, $KundenID, $Telefon, $Preis)
     {
-        $sql = "UPDATE anzeigen SET BieteSuche = :BieteSuche , unterrubrikenID = :unterrubrikenID , Anzeigetext = :Anzeigetext , veröffentlichungsdatum = :veröffentlichungsdatum , KundenID = :KundenID , Telefon = :Telefon , Preis = :Preis WHERE anzeigenID = :anzeigenID";
+        $sql = "UPDATE anzeigen SET BieteSuche = :BieteSuche , unterrubrikenID = :unterrubrikenID , Anzeigetext = :Anzeigetext , veröffentlichungsdatum = :veroeffentlichungsdatum , KundenID = :KundenID , Telefon = :Telefon , Preis = :Preis WHERE anzeigenID = :anzeigenID";
+        //$sql = "UPDATE anzeigen SET BieteSuche = ?, unterrubrikenID =?, Anzeigetext =?, veröffentlichungsdatum =?, KundenID =?, Telefon =?, Preis =? WHERE anzeigenID =?";
 
         $req = Database::getBdd()->prepare($sql);
 
         return $req->execute([
+            'anzeigenID' => $anzeigenID,
             'BieteSuche' => $BieteSuche,
             'unterrubrikenID' => $unterrubrikenID,
-            'Anzeigetext' => $ASnzeigetext,
-            'veröffentlichungsdatum' => date('Y-m-d'),
+            'Anzeigetext' => $Anzeigetext,
+            'veroeffentlichungsdatum' => $veröffentlichungsdatum,
             'KundenID' => $KundenID,
             'Telefon' => $Telefon,
             'Preis' => $Preis
 
         ]);
+
+        //return $req->execute([$BieteSuche, $unterrubrikenID, $Anzeigetext, $veröffentlichungsdatum, $KundenID, $Telefon, $Preis, $anzeigenID]);
     }
 
     public function delete($anzeigenID)
     {
         $sql = 'DELETE FROM anzeigen WHERE anzeigenID = ?';
         $req = Database::getBdd()->prepare($sql);
-        return $req->execute([$id]);
+        return $req->execute([$anzeigenID]);
     }
 }
 ?>

@@ -22,8 +22,8 @@ class AnmeldungenController extends Controller
 
             if ($Anmeldung->create($_POST["Anmeldename"], $_POST["Password"]))
             {
-                echo "Location: /webroot/anmeldungen/index";
-                //header("Location: " . WEBROOT . "tasks/index");
+                //echo "Location: /webroot/anmeldungen/index";
+                header("Location: /webroot/anmeldungen/index");
             }
         }
 

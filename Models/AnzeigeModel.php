@@ -53,8 +53,6 @@ class AnzeigeModel extends Model
             'Preis' => $Preis
 
         ]);
-
-        //return $req->execute([$BieteSuche, $unterrubrikenID, $Anzeigetext, $veröffentlichungsdatum, $KundenID, $Telefon, $Preis, $anzeigenID]);
     }
 
     public function delete($anzeigenID)
@@ -62,6 +60,12 @@ class AnzeigeModel extends Model
         $sql = 'DELETE FROM anzeigen WHERE anzeigenID = ?';
         $req = Database::getBdd()->prepare($sql);
         return $req->execute([$anzeigenID]);
+    }
+    public function getAllUnterrubriken() {
+        $sql = "SELECT * FROM unterrubriken";
+        $req = Database::getBdd()->prepare($sql);
+        $req->execute();
+        return $req->fetchAll();
     }
 }
 ?>

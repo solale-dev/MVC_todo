@@ -4,6 +4,7 @@
         <thead>
         <a href="/webroot/hauptrubriken/create/" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Hauptrubrik</a>
         <tr>
+        <form method="post" action = "/webroot/hauptrubriken/index">
             <th>Hauptrubrik</th>
            <th class="text-center">Action</th>
         </tr>

@@ -22,8 +22,8 @@ class HauptrubrikenController extends Controller
 
             if ($Hauptrubrik->create($_POST["hauptrubrik"]))
             {
-                echo "Location: /webroot/hauptrubriken/index";
-                //header("Location: " . WEBROOT . "tasks/index");
+               //echo "Location: /webroot/hauptrubriken/index";
+                header("Location: /webroot/hauptrubriken/index");
             }
         }
 
@@ -35,7 +35,8 @@ class HauptrubrikenController extends Controller
         require(ROOT . 'Models/HauptrubrikModel.php');
         $Hauptrubrik= new HauptrubrikModel();
 
-        $d["hauptrubriken"] = $Hauptrubrik->showHauptrubrik($hauptrubrikID);
+        $d["hauptrubrik"] = $Hauptrubrik->showHauptrubrik($hauptrubrikenID);
+       // $d["hauptrubriken"] = $Hauptrubrik->showAllHauptrubriken();
 
         if (isset($_POST["hauptrubrik"]))
         {

@@ -14,19 +14,19 @@ class UnterrubrikenController extends Controller
 
     function create()
     {
+        require(ROOT . 'Models/UnterrubrikModel.php');
+        $Unterrubrik= new UnterrubrikModel();
+        $d["hauptrubriken"] = $Unterrubrik->getAllHauptrubriken();
+
         if (isset($_POST["Unterrubrik"]) && isset($_POST["hauptrubrikenID"]))
         {
-            require(ROOT . 'Models/UnterrubrikModel.php');
-
-            $Unterrubrik= new UnterrubrikModel();
-
-            if ($Untertrubrik->create($_POST["Unterrubrik"], $_POST["hauptrubrikenID"]))
+            if ($Unterrubrik->create($_POST["Unterrubrik"], $_POST["hauptrubrikenID"]))
             {
-                echo "Location: /webroot/unterrubriken/index";
-                //header("Location: " . WEBROOT . "tasks/index");
+                //echo "Location: /webroot/unterrubriken/index";
+                header("Location: /webroot/unterrubriken/index");
             }
         }
-
+        $this->set($d);
         $this->render("create");
     }
 

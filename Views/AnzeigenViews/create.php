@@ -1,8 +1,10 @@
 <h1>Create Anzeige</h1>
 <form method='post' action='#'>
     <div class="form-group">
-        <label for="BieteSuche">Biete * Suche</label>
-        <input type="text" class="form-control" id="BieteSuche" placeholder="Geben Sie Biete oder Suche ein" name="BieteSuche">
+    <input type="radio" name="BieteSuche" value ="">
+     <label for="BieteSuche">Biete</label><br>
+     <input type="radio" name="BieteSuche" value ="">
+     <label for="BieteSuche">Suche</label><br><br>
     </div>
 
     <div class="form-group">

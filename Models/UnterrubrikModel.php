@@ -4,9 +4,9 @@ class UnterrubrikModel extends Model
     public function create($Unterrubrik, $hauptrubrikenID)
     {
         $sql = "INSERT INTO unterrubriken (Unterrubrik, hauptrubrikenID) VALUES (:Unterrubrik, :hauptrubrikenID)";
+        // $sql = "INSERT INTO hauptrubriken (hauptrubrik) VALUES (:hauptrubrik)";
 
         $req = Database::getBdd()->prepare($sql);
-
         return $req->execute([
             'Unterrubrik' => $Unterrubrik,
             'hauptrubrikenID' => $hauptrubrikenID
@@ -31,7 +31,7 @@ class UnterrubrikModel extends Model
 
     public function edit($unterrubrikenID, $Unterrubrik, $hauptrubrikenID)
     {
-        $sql = "UPDATE unterrubriken SET Unterrubrik = :Unterrubrik WHERE unterrubrikenID = :unterrubrikenID";
+        $sql = "UPDATE unterrubriken SET Unterrubrik = :Unterrubrik, hauptrubrikenID = :hauptrubrikenID WHERE unterrubrikenID = :unterrubrikenID";
 
         $req = Database::getBdd()->prepare($sql);
 
@@ -47,6 +47,12 @@ class UnterrubrikModel extends Model
         $sql = 'DELETE FROM unterrubriken WHERE unterrubrikenID = ?';
         $req = Database::getBdd()->prepare($sql);
         return $req->execute([$unterrubrikenID]);
+    }
+    public function getAllHauptrubriken() {
+        $sql = "SELECT * FROM hauptrubriken";
+        $req = Database::getBdd()->prepare($sql);
+        $req->execute();
+        return $req->fetchAll();
     }
 }
 ?>

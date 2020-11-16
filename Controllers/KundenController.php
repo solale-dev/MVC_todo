@@ -22,9 +22,9 @@ class KundenController extends Controller
 
             if ($Kunde->create($_POST["Anrede"], $_POST["Name"], $_POST["Vorname"], $_POST["Telefon"], $_POST["Email"], $_POST["Straße"], $_POST["PLZ"], $_POST["Ort"], $_POST["Bankauswahl"], $_POST["Kontonummer"]))
             {
-                echo ROOT;
-                echo "Location: /webroot/kunden/index";
-                //header("Location: " . WEBROOT . "tasks/index");
+                
+                //echo "Location: /webroot/kunden/index";
+                header("Location: /webroot/kunden/index");
             }
         }
 

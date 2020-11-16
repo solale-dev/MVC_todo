@@ -23,8 +23,8 @@ class BankenController extends Controller
 
             if ($Bank->create($_POST["Bankleitzahl"], $_POST["Bezeichnung"], $_POST["PLZ"], $_POST["Ort"], $_POST["Kurzbezeichnung"], $_POST["BIC"]))
             {
-                echo "Location: /webroot/banken/index";
-                //header("Location: " . WEBROOT . "tasks/index");
+                //echo "Location: /webroot/banken/index";
+                header("Location: /webroot/banken/index");
             }
         }
 

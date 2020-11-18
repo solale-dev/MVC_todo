@@ -1,15 +1,16 @@
 <?php
 class AnmeldungModel extends Model
 {
-    public function create($Anmeldename, $Password)
+    public function create($Anmeldename, $Password, $KundenID)
     {
-        $sql = "INSERT INTO anmeldungen (Anmeldename, Password) VALUES (:Anmeldename, :Password)";
+        $sql = "INSERT INTO anmeldungen (Anmeldename, Password, KundenID) VALUES (:Anmeldename, :Password, :KundenID)";
 
         $req = Database::getBdd()->prepare($sql);
 
         return $req->execute([
             'Anmeldename' => $Anmeldename,
-            'Password' => $Password
+            'Password' => $Password, 
+            'KundenID' => $KundenID
             ]);
     }
 
@@ -29,16 +30,16 @@ class AnmeldungModel extends Model
         return $req->fetchAll();
     }
 
-    public function edit($Anmeldename, $Password, $KundenID)
+    public function edit($Anmeldename, $Password, $neuesPassword)
     {
-        $sql = "UPDATE anmeldungen SET Anmeldename = :Anmeldename, Password = :Password, KundenID = :KundenID WHERE Anmeldename = :Anmeldename";
+        $passwordhash = password_hash($neuesPassword, PASSWORD_DEFAULT);
+        $sql = "UPDATE anmeldungen SET Password = :passwordhash WHERE Anmeldename = :Anmeldename";
 
         $req = Database::getBdd()->prepare($sql);
 
         return $req->execute([
             'Anmeldename' => $Anmeldename,
-            'Password' => $Password,
-            'KundenID' => $KundenID
+            'passwordhash' => $passwordhash
             ]);
     }
 

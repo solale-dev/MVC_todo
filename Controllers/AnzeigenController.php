@@ -17,16 +17,15 @@ class AnzeigenController extends Controller
         require(ROOT . 'Models/AnzeigeModel.php');
         $Anzeige= new AnzeigeModel();
         $d["unterrubriken"] = $Anzeige->getAllUnterrubriken();
-
+        $this->set($d);
         if (isset($_POST["BieteSuche"]) && isset($_POST["unterrubrikenID"]) && isset($_POST["Anzeigetext"]) && isset($_POST["KundenID"]) && isset($_POST["Telefon"]))
         {
-            if ($Anzeige->create($_POST["BieteSuche"], $_POST["unterrubrikenID"], $_POST["Anzeigetext"], $_POST["veröffentlichungsdatum"], $_POST["KundenID"], $_POST["Telefon"], $_POST["Preis"]))
+            if ($Anzeige->create($_POST["BieteSuche"], $_POST["unterrubrikenID"], $_POST["Anzeigetext"], $_POST["veroeffentlichungsdatum"], $_POST["KundenID"], $_POST["Telefon"]))
             {
                 //echo "Location: /webroot/anzeigen/index";
                 header("Location: /webroot/anzeigen/index");
             }
         }
-        $this->set($d);
         $this->render("create");
     }
 
@@ -40,7 +39,7 @@ class AnzeigenController extends Controller
         $this->set($d);
         if (isset($_POST["BieteSuche"]) && isset($_POST["unterrubrikenID"]) && isset($_POST["Anzeigetext"]) && isset($_POST["KundenID"]) && isset($_POST["Telefon"]))
         {
-            if ($Anzeige->edit($anzeigenID, $_POST["BieteSuche"], $_POST["unterrubrikenID"], $_POST["Anzeigetext"], $_POST["veröffentlichungsdatum"], $_POST["KundenID"], $_POST["Telefon"], $_POST["Preis"]))
+            if ($Anzeige->edit($anzeigenID, $_POST["BieteSuche"], $_POST["unterrubrikenID"], $_POST["Anzeigetext"], $_POST["veroeffentlichungsdatum"], $_POST["KundenID"], $_POST["Telefon"]))
             {
                 header("Location: /webroot/anzeigen/index");
             }

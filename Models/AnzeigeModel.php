@@ -1,21 +1,25 @@
 <?php
+
 class AnzeigeModel extends Model
 {
-    public function create($BieteSuche, $unterrubrikenID, $Anzeigetext, $veröffentlichungsdatum, $KundenID, $Telefon, $Preis)
+    public function create($BieteSuche, $unterrubrikenID, $Anzeigetext, $veroeffentlichungsdatum, $KundenID, $Telefon)
     {
-        $sql = "INSERT INTO anzeigen (BieteSuche, unterrubriken, Anzeigetext, veröffentlichungsdatum, Aufnahmedatum, KundenID, Telefon, Preis) VALUES (:BieteSuche, :unterrubrikenID, :Anzeigetext, :veröffentlichungsdatum, :Aufnahmedatum, :KundenID, :Telefon, :Preis)";
+        $zeile = 30;
+        $prozeile = 1;
+        $Preis = ((int)(strlen($Anzeigetext)/$zeile) + 1) * $prozeile;
+
+        $sql = "INSERT INTO anzeigen (BieteSuche, unterrubrikenID, Anzeigetext, veroeffentlichungsdatum, KundenID, Telefon, Preis) VALUES (:BieteSuche, :unterrubrikenID, :Anzeigetext, :veroeffentlichungsdatum, :KundenID, :Telefon, :Preis)";
 
         $req = Database::getBdd()->prepare($sql);
-
+ 
         return $req->execute([
             'BieteSuche' => $BieteSuche,
             'unterrubrikenID' => $unterrubrikenID,
             'Anzeigetext' => $Anzeigetext,
-            'veröffentlichungsdatum' => date('Y-m-d'),
+            'veroeffentlichungsdatum' => $veroeffentlichungsdatum,
             'KundenID' => $KundenID,
-            'Tlefon' => $Telefon,
+            'Telefon' => $Telefon,
             'Preis' => $Preis
-
         ]);
     }
 
@@ -35,9 +39,13 @@ class AnzeigeModel extends Model
         return $req->fetchAll();
     }
 
-    public function edit($anzeigenID, $BieteSuche, $unterrubrikenID, $Anzeigetext, $veröffentlichungsdatum, $KundenID, $Telefon, $Preis)
+    public function edit($anzeigenID, $BieteSuche, $unterrubrikenID, $Anzeigetext, $veroeffentlichungsdatum, $KundenID, $Telefon)
     {
-        $sql = "UPDATE anzeigen SET BieteSuche = :BieteSuche , unterrubrikenID = :unterrubrikenID , Anzeigetext = :Anzeigetext , veröffentlichungsdatum = :veroeffentlichungsdatum , KundenID = :KundenID , Telefon = :Telefon , Preis = :Preis WHERE anzeigenID = :anzeigenID";
+        $zeile = 30;
+        $prozeile = 1;
+        $Preis = ((int)(strlen($Anzeigetext)/$zeile) + 1) * $prozeile;
+
+        $sql = "UPDATE anzeigen SET BieteSuche = :BieteSuche , unterrubrikenID = :unterrubrikenID , Anzeigetext = :Anzeigetext , veroeffentlichungsdatum = :veroeffentlichungsdatum , KundenID = :KundenID , Telefon = :Telefon , Preis = :Preis WHERE anzeigenID = :anzeigenID";
         //$sql = "UPDATE anzeigen SET BieteSuche = ?, unterrubrikenID =?, Anzeigetext =?, veröffentlichungsdatum =?, KundenID =?, Telefon =?, Preis =? WHERE anzeigenID =?";
 
         $req = Database::getBdd()->prepare($sql);
@@ -47,7 +55,7 @@ class AnzeigeModel extends Model
             'BieteSuche' => $BieteSuche,
             'unterrubrikenID' => $unterrubrikenID,
             'Anzeigetext' => $Anzeigetext,
-            'veroeffentlichungsdatum' => $veröffentlichungsdatum,
+            'veroeffentlichungsdatum' => $veroeffentlichungsdatum,
             'KundenID' => $KundenID,
             'Telefon' => $Telefon,
             'Preis' => $Preis

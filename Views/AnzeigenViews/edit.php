@@ -3,13 +3,12 @@
 <form method='post' action='#'>
 
 <div class="form-group">
-<div class="form-group">
-    <input type="radio" name="BieteSuche"  value ="<?php if (isset($anzeigen["BieteSuche"])) echo $anzeigen["BieteSuche"];?>">
-     <label for="BieteSuche">Biete</label><br>
-     <input type="radio" name="BieteSuche"  value ="<?php if (isset($anzeigen["BieteSuche"])) echo $anzeigen["BieteSuche"];?>">
-     <label for="BieteSuche">Suche</label><br><br>
+<label for="BieteSuche">Biete</label><br>
+    <input type="radio" class="form-control" id="BieteSuche" name="BieteSuche"  value ="Biete"  <?php if ($anzeigen["BieteSuche"] == "Biete") echo "checked";?>>
+    <label for="BieteSuche">Suche</label><br>
+    <input type="radio" class="form-control" id="BieteSuche" name="BieteSuche"  value ="Suche" <?php if ($anzeigen["BieteSuche"] == "Suche") echo "checked";?>>
     </div>
-        <select name="hauptrubrikenID">
+        <select name="unterrubrikenID">
 <?php
 for ($i=0; $i <count($unterrubriken); $i++) {
     $selected ="";
@@ -24,8 +23,8 @@ for ($i=0; $i <count($unterrubriken); $i++) {
     </div>
 
     <div class="form-group">
-        <label for="veröffentlichungsdatum">veröffentlichungsdatum</label>
-        <input type="text" class="form-control" id="veröffentlichungsdatum" placeholder="Geben Sie das veröffentlichungsdatum ein" name="veröffentlichungsdatum" value ="<?php if (isset($anzeigen["veröffentlichungsdatum"])) echo $anzeigen["veröffentlichungsdatum"];?>">
+        <label for="veroeffentlichungsdatum">veröffentlichungsdatum</label>
+        <input type="text" class="form-control" id="veroeffentlichungsdatum" placeholder="Geben Sie das veröffentlichungsdatum ein" name="veroeffentlichungsdatum" value ="<?php if (isset($anzeigen["veroeffentlichungsdatum"])) echo $anzeigen["veroeffentlichungsdatum"];?>">
     </div>
     
     <div class="form-group">
@@ -36,11 +35,6 @@ for ($i=0; $i <count($unterrubriken); $i++) {
     <div class="form-group">
         <label for="Telefon">Telefon</label>
         <input type="text" class="form-control" id="Telefon" placeholder="Geben Sie die Telefonnummer ein" name="Telefon" value ="<?php if (isset($anzeigen["Telefon"])) echo $anzeigen["Telefon"];?>">
-    </div>
-    
-    <div class="form-group">
-        <label for="Preis">Preis</label>
-        <input type="text" class="form-control" id="Preis" placeholder="Geben Sie den Preis ein" name="Preis" value ="<?php if (isset($anzeigen["Preis"])) echo $anzeigen["Preis"];?>">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

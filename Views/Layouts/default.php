@@ -16,12 +16,21 @@
             padding: 3rem 1.5rem;
             text-align: center;
         }
+        ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+    }
+ 
+      li {
+         display: inline;
+    }
     </style>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">MVC Todo</a>
+    <a class="navbar-brand" href="#">Schnäppchen</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,6 +39,12 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost/schnaeppchen/index.php">Anmeldung <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Kontakt <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>

@@ -7,7 +7,12 @@
 
     <div class="form-group">
         <label for="Password">Password</label>
-        <input type="text" class="form-control" id="Password" placeholder="Geben Sie das Password ein" name="Password">
+        <input type="password" class="form-control" id="Password" placeholder="Geben Sie das Password ein" name="Password">
+    </div>
+
+    <div class="form-group">
+        <label for="KundenID">KundenID</label>
+        <input type="text" class="form-control" id="KundenID" placeholder="Geben Sie die KundenID ein" name="KundenID">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

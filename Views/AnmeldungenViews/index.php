@@ -5,7 +5,7 @@
         <a href="/webroot/anmeldungen/create/" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Anmeldung</a>
         <tr>
             <th>Anmeldename</th>
-            <th>Password</th>
+           <!-- <th>Password</th>-->
             <th>KundenID</th>
             <th class="text-center">Action</th>
         </tr>
@@ -15,7 +15,7 @@
         {
             echo '<tr>';
             echo "<td>" . $anmeldung['Anmeldename'] . "</td>";
-            echo "<td>" . $anmeldung['Password'] . "</td>";
+           // echo "<td>" . $anmeldung['Password'] . "</td>";
             echo "<td>" . $anmeldung['KundenID'] . "</td>";
             echo "<td class='text-center'><a class='btn btn-info btn-xs' href='/webroot/anmeldungen/edit/" . $anmeldung["Anmeldename"] . "' ><span class='glyphicon glyphicon-edit'></span> Edit</a> <a href='/webroot/anmeldungen/delete/" . $anmeldung["Anmeldename"] . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</a></td>";
             echo "</tr>";

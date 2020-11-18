@@ -10,7 +10,7 @@
             <th>veröffentlichungsdatum</th>
             <th>KundenID</th>
             <th>Telefon</th>
-            <!--<th>Preis</th>-->
+            <th>Preis</th>
             <th class="text-center">Action</th>
         </tr>
         </thead>
@@ -21,10 +21,10 @@
             echo "<td>" . $anzeige['BieteSuche'] . "</td>";
             echo "<td>" . $anzeige['unterrubrikenID'] . "</td>";
             echo "<td>" . $anzeige['Anzeigetext'] . "</td>";
-            echo "<td>" . $anzeige['veröffentlichungsdatum'] . "</td>";
+            echo "<td>" . $anzeige['veroeffentlichungsdatum'] . "</td>";
             echo "<td>" . $anzeige['KundenID'] . "</td>";
             echo "<td>" . $anzeige['Telefon'] . "</td>";
-            //echo "<td>" . $anzeige['Preis'] . "</td>";
+            echo "<td>" . $anzeige['Preis'] . "</td>";
             echo "<td class='text-center'><a class='btn btn-info btn-xs' href='/webroot/anzeigen/edit/" . $anzeige["anzeigenID"] . "' ><span class='glyphicon glyphicon-edit'></span> Edit</a> <a href='/webroot/anzeigen/delete/" . $anzeige["anzeigenID"] . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</a></td>";
             echo "</tr>";
         }

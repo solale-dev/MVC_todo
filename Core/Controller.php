@@ -13,6 +13,11 @@
         {
             extract($this->vars);
             ob_start();
+            session_start();
+            if (!isset($_SESSION["Anmeldename"])) {
+              $_SESSION["Anmeldename"] = "Gast";
+              $_SESSION["Gruppe"] = "Gäste";
+            }
             require(ROOT . "Views/" . ucfirst(str_replace('Controller', 'Views', get_class($this))) . '/' . $filename . '.php');
             $content_for_layout = ob_get_clean();
 

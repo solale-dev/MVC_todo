@@ -1,4 +1,4 @@
-<h1>Create Kunde</h1>
+<h1>Kunde</h1>
 <form method='post' action='#'>
 <div class="form-group">
         <label for="Anrede">Anrede</label>

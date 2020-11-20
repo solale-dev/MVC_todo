@@ -1,4 +1,9 @@
 <h1>Passwordänderung</h1>
+<?php
+  if (!empty($Fehler) || !empty($SQLFehler)) {
+      echo $Fehler, $SQLFehler;
+  }
+?>
 <form method='post' action='#'> 
 
 <div class="form-group">
@@ -8,7 +13,7 @@
 
     <div class="form-group">
         <label for="Password">altesPassword</label>
-        <input type="text" class="form-control" id="Password" placeholder="Geben Sie das altesPassword ein" name="Password" value ="">
+        <input type="password" class="form-control" id="alt" placeholder="Geben Sie das altesPassword ein" name="alt" value ="">
     </div>
 
     <div class="form-group">
@@ -20,5 +25,5 @@
         <label for="wiederholt">wiederholtesPassword</label>
         <input type="password" class="form-control" id="wiederholt" placeholder="Geben Sie das wiederholtesPassword ein" name="wiederholt" value ="">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button name="aktion" id="aktion" type="submit" class="btn btn-primary">Submit</button>
 </form>

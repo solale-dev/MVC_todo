@@ -36,26 +36,22 @@ class AnmeldungenController extends Controller
         $Anmeldung= new AnmeldungModel();
 
         $d["anmeldungen"] = $Anmeldung->showAnmeldung($Anmeldename);
-        //echo isset($_POST["Password"])?$_POST["Password"] . "-" . password_hash($_POST["Password"], PASSWORD_DEFAULT):"edit";
-        if (isset($_POST["Password"]) && isset($_POST["neu"]) && isset($_POST["wiederholt"])
+        $d["SQLFehler"] = "";
+        $d["Fehler"] = "";
+        if (isset($_POST["aktion"])
             && $_POST["neu"] === $_POST["wiederholt"] 
-            && password_verify($_POST["Password"], $d["anmeldungen"]["Password"]))
+            && password_verify($_POST["alt"], $d["anmeldungen"]["Password"]))
         {
-            if ($Anmeldung->edit($Anmeldename, $_POST["Password"], $_POST["neu"]))
+            if ($Anmeldung->edit($Anmeldename, $_POST["alt"], $_POST["neu"]))
             {
-                header("Location: /webroot/anmeldungen/index");
+                header("Location: /webroot/anzeigen/index");
             }
-        } else if (isset($_POST["Password"]) && isset($_POST["neu"]) && isset($_POST["wiederholt"])
-        && $_POST["neu"] != $_POST["wiederholt"] 
-        && password_verify($_POST["Password"], $d["anmeldungen"]["Password"])) {
-            echo "<br>Password nicht identisch";
+           $d["SQLFehler"] = "<br>DB_Fehler: Passwort wurde nicht aktualisiert";
         }
-       /* else {
-            if (isset($_POST["Password"]))
-            echo "<br>",$_POST["Password"], "<br>", password_verify($_POST["Password"], $d["anmeldungen"]["Password"]), "<br>"
-          ,$_POST["neu"], "<br>", $_POST["wiederholt"];
-        }*/
-        
+        else {
+            if (isset($_POST["aktion"]))
+              $d["Fehler"] = "<br>Falsche Passwort oder <br>Passworte stimmen nicht überein";
+        }
         $this->set($d);
         $this->render("edit");
     }

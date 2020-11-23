@@ -9,6 +9,7 @@ class LoginController extends Controller
 
         if (isset($_POST["Anmeldename"])) {
           if ($Login->checkLogin($_POST["Anmeldename"], $_POST["Password"])) {
+            session_start();
             $_SESSION["Anmeldename"] = $_POST["Anmeldename"];
             $_SESSION["Gruppe"] = "Kunde|Mitarbeiter|Admins";  
             
